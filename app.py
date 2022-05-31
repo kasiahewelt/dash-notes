@@ -8,6 +8,11 @@ import pandas as pd
 app = Dash(__name__)
 
 
+colors = {
+    'background': '#111111',
+    'text': '#7FDBFF'
+}
+
 # assume you have a "long-form" data frame
 # see https://plotly.com/python/px-arguments/ for more options
 
@@ -18,6 +23,13 @@ df = pd.DataFrame({
 })
 
 fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
+
+fig.update_layout(
+    plot_bgcolor=colors['background'],
+    paper_bgcolor=colors['background'],
+    font_color=colors['text']
+)
+
 
 app.layout = html.Div(children=[
     html.H1(children='Hello Dash'),
@@ -35,5 +47,4 @@ app.layout = html.Div(children=[
 
 if __name__ == '__main__':
     app.run_server(debug=True)
-
 
